@@ -88,9 +88,9 @@ void enterData()
   int n = 0;
   int corner = 0;
 
-  while (checkRange(3, 15, n) == 0)
+  while (checkRange(3, 15, n) == 0 || n % 2 == 0)
   {
-    printf("for the size of the \x1b[31mmatrix\x1b[0m: \t");
+    printf("and odd for the size of the \x1b[31mmatrix\x1b[0m: \t");
     scanf("%d", &n);
   }
 
