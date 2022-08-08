@@ -60,8 +60,6 @@ void caracolMatrix(int n, int corner)
     }
   }
 
-  printf("\n");
-
   for (int i = 0; i < n * n; i++)
   {
     printf("%d\t", matrix[i]);
@@ -72,12 +70,42 @@ void caracolMatrix(int n, int corner)
   }
 }
 
+int checkRange(int a, int b, int x)
+{
+  if (x <= a || x >= b)
+  {
+    printf("Enter a value in the range %d < x < %d ", a, b);
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
+}
+
+void enterData()
+{
+  int n = 0;
+  int corner = 0;
+
+  while (checkRange(3, 15, n) == 0)
+  {
+    printf("for the size of the \x1b[31mmatrix\x1b[0m: \t");
+    scanf("%d", &n);
+  }
+
+  while (checkRange(0, 5, corner) == 0)
+  {
+    printf("for the size of the \x1b[31mcorner\x1b[0m: \t");
+    scanf("%d", &corner);
+  }
+
+  system("cls");
+  caracolMatrix(n, corner);
+}
+
 int main()
 {
   system("cls");
-  int n;
-  printf("Enter size of the matrix: \t");
-  scanf("%d", &n);
-  system("cls");
-  caracolMatrix(n, 4);
+  enterData();
 }
