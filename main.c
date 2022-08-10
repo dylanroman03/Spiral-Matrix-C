@@ -83,29 +83,78 @@ int checkRange(int a, int b, int x)
   }
 }
 
-void enterData()
+// void enterData()
+// {
+//   int n = 0;
+//   int corner = 0;
+
+//   while (checkRange(3, 15, n) == 0 || n % 2 == 0)
+//   {
+//     printf("and odd for the size of the \x1b[31mmatrix\x1b[0m: \t");
+//     scanf("%d", &n);
+//   }
+
+//   while (checkRange(0, 5, corner) == 0)
+//   {
+//     printf("for the size of the \x1b[31mcorner\x1b[0m: \t");
+//     scanf("%d", &corner);
+//   }
+
+//   system("cls");
+//   // caracolMatrix(n, corner);
+// }
+
+int enterData(int type)
 {
   int n = 0;
   int corner = 0;
 
-  while (checkRange(3, 15, n) == 0 || n % 2 == 0)
+  if (type == 1)
   {
-    printf("and odd for the size of the \x1b[31mmatrix\x1b[0m: \t");
-    scanf("%d", &n);
+    while (checkRange(3, 15, n) == 0 || n % 2 == 0)
+    {
+      printf("and odd for the size of the matrix: \t");
+      scanf("%d", &n);
+    }
+    return n;
   }
-
-  while (checkRange(0, 5, corner) == 0)
+  else
   {
-    printf("for the size of the \x1b[31mcorner\x1b[0m: \t");
-    scanf("%d", &corner);
+    while (checkRange(0, 5, corner) == 0)
+    {
+      printf("for the size of the corner: \t");
+      scanf("%d", &corner);
+    }
+    return corner;
   }
-
-  system("cls");
-  caracolMatrix(n, corner);
 }
+
+// void enterSize() {
+// }
 
 int main()
 {
-  system("cls");
-  enterData();
+  int size;
+
+  printf("Enter the size of the matrix\n");
+  scanf("%d", &size);
+
+  int matrix[size];
+  int nMatrix[size];
+  int cornerMatrix[size];
+
+  for (int i = 0; i < size; i++)
+  {
+    nMatrix[i] = enterData(1);
+    cornerMatrix[i] = enterData(0);
+  }
+
+  for (int i = 0; i < size; i++)
+  {
+    caracolMatrix(nMatrix[i], cornerMatrix[i]);
+    printf("\n\n\n");
+  }
+
+  // system("cls");
+  // enterData();
 }
