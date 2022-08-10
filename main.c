@@ -32,8 +32,6 @@ void caracolMatrix(int n, int corner)
     matrix[i] = 0;
   }
 
-  // matrix[corner] = 1;
-
   for (int i = 1; i <= n * n; i++)
   {
     matrix[e] = i;
@@ -70,11 +68,10 @@ void caracolMatrix(int n, int corner)
   }
 }
 
-int checkRange(int a, int b, int x)
+int checkRange(int n, int a)
 {
-  if (x <= a || x >= b)
+  if (n <= 3 || n >= 15 || a <= 0 || a >= 5)
   {
-    printf("Enter a value in the range %d < x < %d ", a, b);
     return 0;
   }
   else
@@ -83,60 +80,11 @@ int checkRange(int a, int b, int x)
   }
 }
 
-// void enterData()
-// {
-//   int n = 0;
-//   int corner = 0;
-
-//   while (checkRange(3, 15, n) == 0 || n % 2 == 0)
-//   {
-//     printf("and odd for the size of the \x1b[31mmatrix\x1b[0m: \t");
-//     scanf("%d", &n);
-//   }
-
-//   while (checkRange(0, 5, corner) == 0)
-//   {
-//     printf("for the size of the \x1b[31mcorner\x1b[0m: \t");
-//     scanf("%d", &corner);
-//   }
-
-//   system("cls");
-//   // caracolMatrix(n, corner);
-// }
-
-int enterData(int type)
-{
-  int n = 0;
-  int corner = 0;
-
-  if (type == 1)
-  {
-    while (checkRange(3, 15, n) == 0 || n % 2 == 0)
-    {
-      printf("and odd for the size of the matrix: \t");
-      scanf("%d", &n);
-    }
-    return n;
-  }
-  else
-  {
-    while (checkRange(0, 5, corner) == 0)
-    {
-      printf("for the size of the corner: \t");
-      scanf("%d", &corner);
-    }
-    return corner;
-  }
-}
-
-// void enterSize() {
-// }
-
 int main()
 {
   int size;
 
-  printf("Enter the size of the matrix\n");
+  printf("Enter the quantity of the matrix:\t");
   scanf("%d", &size);
 
   int matrix[size];
@@ -145,8 +93,24 @@ int main()
 
   for (int i = 0; i < size; i++)
   {
-    nMatrix[i] = enterData(1);
-    cornerMatrix[i] = enterData(0);
+    int n = 0;
+    int corner = 0;
+
+    printf("Ingresa el rango de la matrix y la esquinas (separada por espacios)");
+    printf("\nEl rango para la matrix es 3 < x < 15 e impar y el de las esquinas 0 < x < 5\n");
+
+    while (checkRange(n, corner) == 0 || n % 2 == 0)
+    {
+      scanf("%d %d", &n, &corner);
+      if (checkRange(n, corner) == 0 || n % 2 == 0)
+      {
+        printf("Ingrese Valores Correctos\n");
+      }
+    }
+
+    printf("\nValores agregados\n");
+    nMatrix[i] = n;
+    cornerMatrix[i] = corner;
   }
 
   for (int i = 0; i < size; i++)
@@ -154,7 +118,4 @@ int main()
     caracolMatrix(nMatrix[i], cornerMatrix[i]);
     printf("\n\n\n");
   }
-
-  // system("cls");
-  // enterData();
 }
